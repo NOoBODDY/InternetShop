@@ -1,6 +1,8 @@
 ﻿using InternetShop.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace InternetShop.Controllers
 {
@@ -12,11 +14,23 @@ namespace InternetShop.Controllers
         {
             _logger = logger;
         }
-
+        [Authorize(Roles = "admin, user")]
         public IActionResult Index()
         {
-            return View();
+            string role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
+            return Content($"ваша роль: {role}");
         }
+        [Authorize(Roles = "admin")]
+        public IActionResult About()
+        {
+            return Content("Вход только для администратора");
+        }
+
+
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
 
         public IActionResult Privacy()
         {
