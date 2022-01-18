@@ -10,5 +10,6 @@
         public Role Role { get; set; }
         public List<ProductInCart> ShoppingCart { get; set; } = new();
         public List<Order> Orders { get; set; } = new();
+        public Seller? Seller { get; set; } 
     }
 }
