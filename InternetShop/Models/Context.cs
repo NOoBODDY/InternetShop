@@ -39,10 +39,10 @@ namespace InternetShop.Models
             Role selerRole = new Role { Id = 3, Name = sellerRoleName };
             Role moderatorRole = new Role { Id = 4, Name = moderatorRoleName };
             User adminUser = new User { Id = 1, Login = adminEmail, Password = adminPassword, RoleId = adminRole.Id };
-            User sellerUser = new User { Id = 2, Login = sellerEmail, Password = sellerPassword, RoleId = selerRole.Id, Seller = seller };
+            User sellerUser = new User { Id = 2, Login = sellerEmail, Password = sellerPassword, RoleId = selerRole.Id, SellerId = seller.Id };
 
             modelBuilder.Entity<Role>().HasData(new Role[] { adminRole, userRole, selerRole, moderatorRole});
-            modelBuilder.Entity<User>().HasData(new User[] { adminUser });
+            modelBuilder.Entity<User>().HasData(new User[] { adminUser, sellerUser });
             modelBuilder.Entity<Seller>().HasData(new Seller[] { seller });
             base.OnModelCreating(modelBuilder);
 
