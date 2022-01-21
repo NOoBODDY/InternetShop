@@ -9,16 +9,18 @@ namespace InternetShop.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private Context _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, Context context)
         {
+            _context = context;
             _logger = logger;
         }
-        [Authorize(Roles = "admin, user")]
+        [Authorize(Roles = "admin, user, seller")]
         public IActionResult Index()
         {
-            string role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
-            return Content($"ваша роль: {role}");
+            List<Product> products = _context.Products.Take(40).ToList();
+            return View(products);
         }
         [Authorize(Roles = "admin")]
         public IActionResult About()
