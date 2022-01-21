@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "New Product";
+}
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>@ViewBag.SellerName</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+        <form asp-action="Create" asp-controller="Seller" method="post" enctype="multipart/form-data">
+            <p>
+                <label>Полное имя товара</label>
+                <input name="FullName" class="form-control" />
+            </p>
+            <p>
+                <label>Короткое имя товара</label>
+                <input name="ShortName" class="form-control" />
+            </p>
+            <p>
+                <label>Изображение</label>
+                <input name="Image" type="file" class="form-control" />
+            </p>
+            <p>
+                <label>Описание товара</label>
+                <input name="Description" class="form-control" />
+            </p>
+            <p>
+                <label>Цена в рублях</label>
+                <input name="Cost" class="form-control" />
+            </p>
+            <p>
+                <input type="submit" value="Добавить" />
+            </p>
+        </form>
+    </div>
