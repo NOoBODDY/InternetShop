@@ -99,6 +99,27 @@
                             </button>
                             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                                 <ul class="navbar-nav flex-grow-1" >
+
+                                    @foreach(LayoutModel bars in ViewBag.Bars)
+                                    {
+                                        @if(bars.Active)
+                                        {
+                                            <li class="nav-item active">
+                                                <a class="nav-link text-white" asp-area="" asp-controller="@bars.Controller" asp-action="@bars.Action">@bars.Title</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link text-white" asp-area="" asp-controller="@bars.Controller" asp-action="@bars.Action">@bars.Title</a>
+                                            </li>
+                                        }
+                                        
+                                    }
+
+
+                                    <!--
+
                                     <li class="nav-item">
                                         <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                                     </li>
@@ -114,6 +135,8 @@
                                     <li class="nav-item">
                                         <a class="nav-link text-white" asp-area="" asp-controller="Seller" asp-action="Index">Seller</a>
                                     </li>
+                                    -->
+
                                 </ul>
                             </div>  
                         </div>

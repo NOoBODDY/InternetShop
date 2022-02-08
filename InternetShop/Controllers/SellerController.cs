@@ -23,7 +23,7 @@ namespace InternetShop.Controllers
         public IActionResult Index()
         {
             Seller seller= _context.Users.Include(u => u.Seller).ThenInclude(c=> c!.Products).FirstOrDefault(x => x.Login == User.Identity.Name)?.Seller;
-
+            ViewBag.Bars = LayoutModel.Generate("Seller");
             ViewBag.SellerName =seller?.Name;
             return View(seller?.Products);
         }
@@ -32,7 +32,7 @@ namespace InternetShop.Controllers
         public IActionResult Newproduct()
         {
             Seller seller = _context.Users.Include(u => u.Seller).FirstOrDefault(x => x.Login == User.Identity.Name)?.Seller;
-
+            ViewBag.Bars = LayoutModel.Generate("Seller");
             ViewBag.SellerName = seller?.Name;
             return View();
         }

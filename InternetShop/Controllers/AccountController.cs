@@ -18,6 +18,7 @@ namespace InternetShop.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            ViewBag.Bars = LayoutModel.Generate();
             return View();
         }
         [HttpPost]
@@ -45,11 +46,14 @@ namespace InternetShop.Controllers
                 else
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
+            ViewBag.Bars = LayoutModel.Generate();
             return View(model);
         }
         [HttpGet]
         public IActionResult Login()
         {
+            ViewBag.Bars = LayoutModel.Generate();
+
             return View();
         }
         [HttpPost]
@@ -67,6 +71,8 @@ namespace InternetShop.Controllers
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
+            ViewBag.Bars = LayoutModel.Generate();
+
             return View(model);
         }
         private async Task Authenticate(User user)

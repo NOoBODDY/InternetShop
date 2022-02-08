@@ -20,6 +20,7 @@ namespace InternetShop.Controllers
         public IActionResult Index()
         {
             List<Product> products = _context.Products.Take(40).ToList();
+            ViewBag.Bars = LayoutModel.Generate("Home");
             return View(products);
         }
         [Authorize(Roles = "admin")]
